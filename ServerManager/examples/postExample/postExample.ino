@@ -8,13 +8,13 @@ github www.github.com/vixtory09678
 #include <ServerManager.h>
 #include <ESP8266WiFi.h>
 
-const char* ssid = "teamkuywa";
-const char* password = "testtest";
+const char* ssid = "yourSSID";
+const char* password = "yourPassword";
 
 WiFiServer server(80);
 
-const char* urlPart = "/channels/106748/fields/1/last.json";
-bool checkSend = false;
+const char* urlPart = "/channels/106748/fields/1/last.json"; // your channel
+bool checkSend = false; 
 
 void setup(){
   Serial.begin(115200);
@@ -39,6 +39,7 @@ void loop(){
   if(checkSend && getValuetoSend.length() > 0){
     String send = "api_key=CQ0CIKNV5SONBQS3&field1="+getValuetoSend;
     ServerManager::getInstance()->post(send.c_str(),&jsonStr);
+    checkSend = false;
   }
     
   //Display
