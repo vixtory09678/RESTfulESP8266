@@ -8,12 +8,12 @@ github www.github.com/vixtory09678
 #include <ServerManager.h>
 #include <ESP8266WiFi.h>
 
-const char* ssid = "teamkuywa";
-const char* password = "testtest";
+const char* ssid = "yourSSID";
+const char* password = "yourPassword";
 
 WiFiServer server(80);
 
-const char* urlPart = "/channels/106748/fields/1/last.json";
+const char* urlPart = "/channels/106748/fields/1/last.json"; //part to update
 
 void setup(){
 	Serial.begin(115200);
@@ -26,7 +26,7 @@ void loop(){
 
 	ServerManager::getInstance()->setHosting("api.thingspeak.com",80);
 	ServerManager::getInstance()->get(urlPart,&jsonStr);
-	//ServerManager::get(urlPart);
+	//ServerManager::getInstance()->get(urlPart);
 	
 	Serial.print("data is ");
 	Serial.println(jsonStr);
